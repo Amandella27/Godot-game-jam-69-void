@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://jhirsvhpqlql"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_6f10q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3ae51"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_618qm"]
+size = Vector3(1, 0.1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hbyx"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_6f10q")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10)
+
+[node name="ShipBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3ae51")
+
+[node name="RightWing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999791, 0, 0)
+mesh = SubResource("BoxMesh_618qm")
+
+[node name="LeftWing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00075, 0, 0)
+mesh = SubResource("BoxMesh_618qm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1hbyx")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbxkas2q0ev7k"]
+
+[ext_resource type="Material" uid="uid://dqbvaqkjf7ngr" path="res://Materials/sky.tres" id="1_huevl"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_abfl1"]
+size = Vector2(1000, 1000)
+
+[node name="Sky" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_abfl1")
+surface_material_override/0 = ExtResource("1_huevl")

@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dqbvaqkjf7ngr"]
+
+[ext_resource type="Shader" path="res://Materials/sky.gdshader" id="1_rfx0d"]
+
+[sub_resource type="Gradient" id="Gradient_djs7u"]
+offsets = PackedFloat32Array(0.647541, 1)
+colors = PackedColorArray(0.0222172, 0.257695, 1, 1, 0.933333, 0.85098, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xaoyf"]
+seed = 100
+frequency = 0.02
+offset = Vector3(0, 5, 0)
+fractal_gain = 0.75
+fractal_ping_pong_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xkupq"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_djs7u")
+noise = SubResource("FastNoiseLite_xaoyf")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rfx0d")
+shader_parameter/noise1 = SubResource("NoiseTexture2D_xkupq")

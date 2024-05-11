@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://btusmelq8k4vt"]
+
+[ext_resource type="PackedScene" uid="uid://jhirsvhpqlql" path="res://Scenes/player.tscn" id="1_7ixnx"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_r4b3e"]
+[ext_resource type="PackedScene" uid="uid://bbxkas2q0ev7k" path="res://Scenes/sky.tscn" id="3_m1ycm"]
+
+[sub_resource type="Gradient" id="Gradient_h3t8q"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v5duo"]
+gradient = SubResource("Gradient_h3t8q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bbo7"]
+albedo_color = Color(0.439216, 0.2, 0, 1)
+normal_enabled = true
+normal_texture = SubResource("GradientTexture1D_v5duo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fbhp7"]
+material = SubResource("StandardMaterial3D_1bbo7")
+size = Vector2(1000, 1000)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_r4b3e")
+
+[node name="Player" parent="." instance=ExtResource("1_7ixnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41319, 0)
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="World"]
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="World/CSGCombiner3D"]
+mesh = SubResource("PlaneMesh_fbhp7")
+
+[node name="Sky" parent="World" instance=ExtResource("3_m1ycm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 556, 0)
